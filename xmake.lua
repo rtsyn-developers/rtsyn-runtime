@@ -57,7 +57,9 @@ add_includedirs("include", { public = true })
 add_includedirs("src")
 add_headerfiles("include/(rtsyn/**.h)")
 
-local rtsyn_modules = {}
+local rtsyn_modules = {
+	{ path = "runtime", name = "runtime" },
+}
 
 if has_config("tests") then
 	for _, rtsyn_module in ipairs(rtsyn_modules) do

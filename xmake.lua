@@ -59,6 +59,7 @@ add_headerfiles("include/(rtsyn/**.h)")
 
 local rtsyn_modules = {
 	{ path = "runtime", name = "runtime" },
+	{ path = "runtime/connection", name = "connection" },
 }
 
 if has_config("tests") then

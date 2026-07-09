@@ -314,6 +314,14 @@ rtsyn_runtime_context_is_port_connected(const rtsyn_abi_runtime_context_t *conte
         return false;
     }
 
+    /* Observed source ports need acquisition even without a graph consumer.
+     * Never activate a hardware output merely because it is being plotted. */
+    if (rtsyn_node_is_port_observed(host_context->node, port_index) &&
+        rtsyn_node_get_port_by_id(host_context->node, port_index, RTSYN_ABI_PORT_DIRECTION_OUT))
+    {
+        return true;
+    }
+
     rtsyn_runtime_connected_port_search_t search = {
         .host_context = host_context,
         .port_index = port_index,
